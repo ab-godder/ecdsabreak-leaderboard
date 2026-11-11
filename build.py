@@ -118,7 +118,7 @@ g.addEventListener('pointerleave',hide);g.addEventListener('blur',hide);}
 chart.querySelector('.plot').addEventListener('scroll',hide);
 const scales=chart.querySelector('.scales'),pick={x:'log',y:'log'};
 const apply=()=>{for(const b of scales.querySelectorAll('button'))b.setAttribute('aria-pressed',pick[b.dataset.axis]===b.dataset.scale);
-for(const s of chart.querySelectorAll('.plot>svg'))s.hidden=!(s.dataset.x===pick.x&&s.dataset.y===pick.y);hide();};
+for(const s of chart.querySelectorAll('.plot>svg'))s.toggleAttribute('hidden',!(s.dataset.x===pick.x&&s.dataset.y===pick.y));hide();};
 try{Object.assign(pick,JSON.parse(localStorage.getItem('frontier-scales'))||{});}catch(e){}
 for(const b of scales.querySelectorAll('button'))b.addEventListener('click',()=>{pick[b.dataset.axis]=b.dataset.scale;
 try{localStorage.setItem('frontier-scales',JSON.stringify(pick));}catch(e){}apply();});
